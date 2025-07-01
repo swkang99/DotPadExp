@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="OpenCvSharp4.Windows" Version="4.10.0.20241108" />
     <PackageReference Include="System.IO.Ports" Version="9.0.2" />
+    <PackageReference Include="System.Management" Version="9.0.6" />
   </ItemGroup>
 
 </Project>

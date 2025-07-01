@@ -1,4 +1,5 @@
 using System.IO.Ports;
+using System.Management;
 
 namespace DotPadExp.DotPad.Protocol
 {
@@ -6,10 +7,40 @@ namespace DotPadExp.DotPad.Protocol
     {
         public bool IsOpen = false;
         private readonly SerialPort _serialPort = new();
-        private readonly string _portName = "COM12";
+        private readonly string? _portName;
         private readonly int _baudRate = 115200;
         private readonly int _dataBits = 8;
         private readonly StopBits _stopBits = StopBits.One;
+
+        public ComSerial()
+        {
+            List<string> usbComPorts = [];
+
+            if (OperatingSystem.IsWindows())
+            {
+                using var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE Name LIKE '%(COM%'");
+                foreach (ManagementObject obj in searcher.Get().Cast<ManagementObject>())
+                {
+                    string? name = obj["Name"]?.ToString();
+                    if (name != null && name.Contains("usb", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        // 예: "USB Serial Device (COM3)" → COM 포트 번호만 추출
+                        int start = name.LastIndexOf("(COM");
+                        if (start >= 0)
+                        {
+                            int end = name.IndexOf(')', start);
+                            if (end > start)
+                            {
+                                string comPort = name.Substring(start + 1, end - start - 1); // "COM3"
+                                usbComPorts.Add(comPort);
+                            }
+                        }
+                    }
+                }
+            }       
+            
+            _portName ??= usbComPorts[0];
+        }
 
         public void SerialOpen()
         {
