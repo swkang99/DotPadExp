@@ -6,7 +6,7 @@ namespace DotPadExp.DotPad.Protocol
     {
         public bool IsOpen = false;
         private readonly SerialPort _serialPort = new();
-        private readonly string _portName = "COM3";
+        private readonly string _portName = "COM12";
         private readonly int _baudRate = 115200;
         private readonly int _dataBits = 8;
         private readonly StopBits _stopBits = StopBits.One;

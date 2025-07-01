@@ -22,7 +22,7 @@ namespace DotPadExp
             // client.Listen();
            
             Test test = new(controller);
-            test.TestDotPadDrawLines(40, 40);
+            test.TestLine(2);
         }
     }
 }

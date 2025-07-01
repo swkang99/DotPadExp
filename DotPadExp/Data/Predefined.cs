@@ -4,8 +4,8 @@ namespace DotPadExp.Data
     {
         private readonly int _allCellWidth = 30;
         private readonly int _allCellHeight = 10;
-        private readonly int _lineCellWidth = 20;
-        private readonly int _lineCellHeight = 10;
+        private readonly int _lineCellWidth = 30;
+        private readonly int _lineCellHeight = 1;
         private readonly int _partialCellWidth = 10;
         private readonly int _partialCellHeight = 5;
         

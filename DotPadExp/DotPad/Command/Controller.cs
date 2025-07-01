@@ -94,7 +94,7 @@ namespace DotPadExp.DotPad.Command
 
         private void DrawCommon(
             DrawingParameters drawingParameters,
-            Func<int[,], Area, int, int, (byte[], byte[])> dataGenerator,
+            Func<int[,], Area, int, int, (byte[], byte[])> txDataGenerator,
             Func<IDrawingStrategy> strategySelector)
         {
             int[,] dots = Conversion.ImageToDots(
@@ -104,7 +104,7 @@ namespace DotPadExp.DotPad.Command
                 drawingParameters.Weight
             );
 
-            (byte[] argCellData, byte[] cellOffset) = dataGenerator(
+            (byte[] argCellData, byte[] cellOffset) = txDataGenerator(
                 dots,
                 drawingParameters.Area,
                 drawingParameters.XDotRes,
