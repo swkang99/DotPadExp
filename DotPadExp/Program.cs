@@ -1,7 +1,7 @@
 ﻿using DotPadExp.DotPad.Protocol;
 using DotPadExp.DotPad.Command;
 using DotPadExp.Experiment;
-
+using DotPadExp.Data;
 namespace DotPadExp
 {
     public class Program
@@ -18,11 +18,15 @@ namespace DotPadExp
                 strategyFactory
             );
 
+
+            Console.WriteLine(Predefined.DirBase);
+            Console.WriteLine(Predefined.DirImage);
+
             // Client client = new(controller);
             // client.Listen();
-           
-            Test test = new(controller);
-            test.TestLine(2);
+
+            // Test test = new(controller);
+            // test.TestLine(2);
         }
     }
 }

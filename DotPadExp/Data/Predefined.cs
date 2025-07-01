@@ -1,3 +1,4 @@
+using System.IO;
 namespace DotPadExp.Data
 {
     public class Predefined
@@ -8,7 +9,7 @@ namespace DotPadExp.Data
         private readonly int _lineCellHeight = 1;
         private readonly int _partialCellWidth = 10;
         private readonly int _partialCellHeight = 5;
-        
+
         private static byte[] InitBytes(int cellWidth, int cellHeight, byte val = 0)
         {
             int bytesLength = cellWidth * cellHeight;
@@ -26,12 +27,12 @@ namespace DotPadExp.Data
         public byte[] AllDownBytes
         {
             get
-            {  
+            {
                 _cachedAllDownBytes ??= InitBytes(_allCellWidth, _allCellHeight);
                 return _cachedAllDownBytes;
             }
         }
-        
+
         private byte[]? _cachedAllUpBytes;
         public byte[] AllUpBytes
         {
@@ -82,18 +83,23 @@ namespace DotPadExp.Data
             }
         }
 
-        readonly public static string DirImage = @"C:/Users/kseon/DotPadExp/DotPadExp/Images/PixelStudy/";
+        readonly static DirectoryInfo parent1 = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory) ?? throw new InvalidOperationException("Invalid Path.");
+        readonly static DirectoryInfo parent2 = Directory.GetParent(parent1.FullName) ?? throw new InvalidOperationException("Invalid Path.");
+        readonly static DirectoryInfo parent3 = Directory.GetParent(parent2.FullName) ?? throw new InvalidOperationException("Invalid Path.");
+        readonly static DirectoryInfo parent4 = Directory.GetParent(parent3.FullName) ?? throw new InvalidOperationException("Invalid Path.");
+        readonly public static string DirBase = parent4.FullName;
+        readonly public static string DirImage = Path.Join(DirBase, "Images", "PixelStudy") + Path.DirectorySeparatorChar;
         readonly public static string[] Images = Directory.GetFiles(DirImage, "*.*", SearchOption.AllDirectories);
         readonly public static string[] SortedImages = SortByNumber(Images);
-        readonly public static (int X, int Y)[] DotResolutions = 
+        readonly public static (int X, int Y)[] DotResolutions =
         [
             (X: 40, Y: 40),
             (X: 30, Y: 30),
-            (X: 20, Y: 20), 
-            (X: 15, Y: 15), 
+            (X: 20, Y: 20),
+            (X: 15, Y: 15),
             (X: 10, Y: 10)
         ];
-        private static string[] SortByNumber (string[] data)
+        private static string[] SortByNumber(string[] data)
         {
             Array.Sort(data, (x, y) =>
             {
