@@ -1,9 +1,10 @@
 using System.IO.Ports;
 using System.Management;
+using System.Text.RegularExpressions;
 
 namespace DotPadExp.DotPad.Protocol
 {
-    public class ComSerial
+    public partial class ComSerial
     {
         public bool IsOpen = false;
         private readonly SerialPort _serialPort = new();
@@ -11,6 +12,9 @@ namespace DotPadExp.DotPad.Protocol
         private readonly int _baudRate = 115200;
         private readonly int _dataBits = 8;
         private readonly StopBits _stopBits = StopBits.One;
+
+        [GeneratedRegex(@"\d+")]
+        private static partial Regex MyRegex();
 
         public ComSerial()
         {
@@ -37,8 +41,15 @@ namespace DotPadExp.DotPad.Protocol
                         }
                     }
                 }
-            }       
-            
+            }
+
+            usbComPorts.Sort((a, b) =>
+            {
+                int numA = int.Parse(MyRegex().Match(a).Value);
+                int numB = int.Parse(MyRegex().Match(b).Value);
+                return numA.CompareTo(numB);
+            });
+
             _portName ??= usbComPorts[0];
         }
 
