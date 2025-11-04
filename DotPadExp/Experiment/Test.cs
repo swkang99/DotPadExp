@@ -62,7 +62,7 @@ namespace DotPadExp.Experiment
             
             foreach (Area area in areas)
             {
-                DrawingParameters drawingParameters = new(Predefined.Images[0], area, xDotRes, yDotRes, weight);
+                DrawingParameters drawingParameters = new(Predefined.PixelImages[0], area, xDotRes, yDotRes, weight);
                 controller.DrawLines(drawingParameters);
                 _ = Console.ReadKey();
             }
@@ -74,7 +74,7 @@ namespace DotPadExp.Experiment
             
             foreach (Area area in areas)
             {
-                DrawingParameters drawingParameters = new(Predefined.Images[0], area, xDotRes, yDotRes, weight);
+                DrawingParameters drawingParameters = new(Predefined.PixelImages[0], area, xDotRes, yDotRes, weight);
                 controller.DrawPartial(drawingParameters);
                 _ = Console.ReadKey();
             }
@@ -84,7 +84,7 @@ namespace DotPadExp.Experiment
         {
             Area area = Area.Create(AreaNumber.MiddleCenter, xDotRes, yDotRes);
 
-            foreach (string image in Predefined.Images)
+            foreach (string image in Predefined.PixelImages)
             {
                 DrawingParameters drawingParameters = new(image, area, xDotRes, yDotRes, weight);
                 controller.DrawLines(drawingParameters);
@@ -98,7 +98,7 @@ namespace DotPadExp.Experiment
         {
             Area area = Area.Create(AreaNumber.MiddleCenter, xDotRes, yDotRes);
 
-            foreach (string image in Predefined.Images)
+            foreach (string image in Predefined.PixelImages)
             {
                 DrawingParameters drawingParameters = new(image, area, xDotRes, yDotRes, weight);
                 controller.DrawPartial(drawingParameters);

@@ -87,9 +87,11 @@ namespace DotPadExp.Data
         readonly static DirectoryInfo parent3 = Directory.GetParent(parent2.FullName) ?? throw new InvalidOperationException("Invalid Path.");
         readonly static DirectoryInfo parent4 = Directory.GetParent(parent3.FullName) ?? throw new InvalidOperationException("Invalid Path.");
         readonly public static string DirBase = parent4.FullName;
-        readonly public static string DirImage = Path.Join(DirBase, "Images", "PixelStudy") + Path.DirectorySeparatorChar;
-        readonly public static string[] Images = Directory.GetFiles(DirImage, "*.*", SearchOption.AllDirectories);
-        readonly public static string[] SortedImages = SortByNumber(Images);
+        readonly public static string DirImagePixel = Path.Join(DirBase, "Images", "PixelStudy") + Path.DirectorySeparatorChar;
+        readonly public static string DirImageBraille = Path.Join(DirBase, "Images", "BrailleImage") + Path.DirectorySeparatorChar;
+        readonly public static string[] PixelImages = Directory.GetFiles(DirImagePixel, "*.*", SearchOption.AllDirectories);
+        readonly public static string[] BrailleImages = Directory.GetFiles(DirImageBraille, "*.*", SearchOption.AllDirectories);
+        readonly public static string[] SortedPixelImages = SortByNumber(PixelImages);
         readonly public static (int X, int Y)[] DotResolutions =
         [
             (X: 40, Y: 40),

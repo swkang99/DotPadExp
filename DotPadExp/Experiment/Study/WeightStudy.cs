@@ -13,7 +13,7 @@ namespace DotPadExp.Experiment.Study
             Area areaMiddleCenter = Area.Create(AreaNumber.MiddleCenter, _xDotRes, _yDotRes);
 
             DrawingParameters drawingParameters = new(
-                Predefined.SortedImages[_imageNumber],
+                Predefined.SortedPixelImages[_imageNumber],
                 areaMiddleCenter,
                 _xDotRes,
                 _yDotRes,

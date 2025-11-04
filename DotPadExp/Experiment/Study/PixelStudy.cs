@@ -16,7 +16,7 @@ namespace DotPadExp.Experiment.Study
             // _weight = 이미지별 저장된 weight, _imageNumber를 이용해 참조
             
             DrawingParameters drawingParameters = new(
-                Predefined.SortedImages[_imageNumber],
+                Predefined.SortedPixelImages[_imageNumber],
                 areaMiddleCenter,
                 _xDotRes,
                 _yDotRes,
